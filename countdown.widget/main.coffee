@@ -1,4 +1,4 @@
-command: "/Users/yina/Dropbox/Backups/geektool/ubersicht_widgets/countdown.widget/simple_countdown.sh"
+command: "/Users/yina/Dropbox/Backups/geektool/ubersicht_widgets/bin/simple_countdown.sh"
 
 refreshFrequency: 5000
 

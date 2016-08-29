@@ -1,4 +1,4 @@
-command: "/Users/yina/.pyenv/shims/python /Users/yina/Dropbox/Backups/geektool/ubersicht_widgets/rtm_list.widget/rtm_cli.py -c -p ls list:now priority:1"
+command: "/Users/yina/.pyenv/shims/python /Users/yina/Dropbox/Backups/geektool/ubersicht_widgets/bin/rtm_cli.py -c -p ls list:now priority:1"
 
 refreshFrequency: 10000
 
