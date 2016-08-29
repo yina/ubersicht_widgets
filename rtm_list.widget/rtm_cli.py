@@ -823,13 +823,35 @@ def ls(filterString=""):
 
         # for incomplete tasks...
         else:
+            # print the due date, if it has one and in color, if desired
+            if tasks[i][4] != "":
+
+                # get the due date as a string
+                date = str(tasks[i][4])
+
+                # convert the date into a datetime object
+                duedate = datetime.strptime(date, "%Y-%m-%dT%H:%M:%SZ") #.replace(tzinfo=utc).astimezone(Local)
+
+                nowdate = datetime.now()
+
+                datedelta = duedate - nowdate
+
+                # for plain output...
+                if PLAIN == 1:
+                    #display("| " + weekdays[date.weekday()] + " " + str(date)[5:10], 0)
+                    display("<tr><td style=\"text-align:right\">" + str(datedelta.days + 1) + ":</td>", 0)
+
+                # for colored output...
+                else:
+                   display(COLOR_DUE + '| ' + weekdays[date.weekday()] + " " + str(date)[5:10] + COLOR_RESET, 0)
 
             # print the priority, if present, and the task in color, if desired
             if tasks[i][3] != "N":
 
                 # for plain output..
                 if PLAIN == 1:
-                    display("(" + tasks[i][3] + ") " + tasks[i][2], 0)
+                    #display("(" + tasks[i][3] + ") " + tasks[i][2], 0)
+                    display("<td>" + tasks[i][2] + "</td></tr>", 0)
 
                     # print url, if any
                     if tasks[i][10]:
@@ -868,42 +890,21 @@ def ls(filterString=""):
             display(" ", 0)
 
             # print the tags, if any
-            if (len(tasks[i][8]) != 0) and (DISP_TAGS == 1):
+            # if (len(tasks[i][8]) != 0) and (DISP_TAGS == 1):
+            #
+            #     # for plain output...
+            #     if PLAIN == 1:
+            #         for j in range(len(tasks[i][8])):
+            #             display("#" + tasks[i][8][j] + " ", 0)
+            #
+            #     # for colored output...
+            #     else:
+            #         display(COLOR_TAG, 0)
+            #         for j in range(len(tasks[i][8])):
+            #            display("#" + tasks[i][8][j] + " ", 0)
+            #         display(COLOR_RESET, 0)
 
-                # for plain output...
-                if PLAIN == 1:
-                    for j in range(len(tasks[i][8])):
-                        display("#" + tasks[i][8][j] + " ", 0)
 
-                # for colored output...
-                else:
-                    display(COLOR_TAG, 0)
-                    for j in range(len(tasks[i][8])):
-                       display("#" + tasks[i][8][j] + " ", 0)
-                    display(COLOR_RESET, 0)
-
-
-            # print the due date, if it has one and in color, if desired
-            if tasks[i][4] != "":
-
-                # get the due date as a string
-                date = str(tasks[i][4])
-
-                # convert the date into a datetime object
-                duedate = datetime.strptime(date, "%Y-%m-%dT%H:%M:%SZ") #.replace(tzinfo=utc).astimezone(Local)
-
-                nowdate = datetime.now()
-
-                datedelta = duedate - nowdate
-
-                # for plain output...
-                if PLAIN == 1:
-                    #display("| " + weekdays[date.weekday()] + " " + str(date)[5:10], 0)
-                    display("|" + " " + str(datedelta.days + 1) + "<br>", 0)
-
-                # for colored output...
-                else:
-                   display(COLOR_DUE + '| ' + weekdays[date.weekday()] + " " + str(date)[5:10] + COLOR_RESET, 0)
 
             # print new line
             display("")
