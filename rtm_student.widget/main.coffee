@@ -1,10 +1,10 @@
-command: "/Users/yina/.pyenv/shims/python /Users/yina/Dropbox/Backups/geektool/ubersicht_widgets/bin/rtm_cli.py -c -p ls list:students priority:0"
+command: "/Users/yina/.pyenv/shims/python /Users/yina/Dropbox/Backups/geektool/ubersicht_widgets/bin/rtm_cli.py -c -p ls list:.students"
 
-refreshFrequency: 10000
+refreshFrequency: false
 
 style: """
-  top: 450px
-  left: 375px
+  top: 15px
+  left: 750px
 
 	*
 		margin 0
@@ -21,7 +21,7 @@ style: """
 		list-style none
 
 	li
-		padding 10px
+		padding 0px
 		&:not(:last-child)
 			border-bottom solid 1px white
 
@@ -39,6 +39,9 @@ render: (output) -> """
   <ul>
   <li>
 				<table>
+    <thead>
+    STUDENTS
+    </thead>
 					<tbody>
 						<tr>
        #{output}
