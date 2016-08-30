@@ -824,6 +824,7 @@ def ls(filterString=""):
         # for incomplete tasks...
         else:
             # print the due date, if it has one and in color, if desired
+            # has due date [4]
             if tasks[i][4] != "":
 
                 # get the due date as a string
@@ -872,7 +873,7 @@ def ls(filterString=""):
 
             # indent non-prioritized tasks further
             else:
-                display("    " + tasks[i][2], 0)
+                display("<tr><td>" + tasks[i][2] + "</td></tr>", 0)
 
                 # print task url, if any
                 if tasks[i][10]:
