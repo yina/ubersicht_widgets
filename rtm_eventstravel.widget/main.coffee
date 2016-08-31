@@ -1,4 +1,4 @@
-command: "/Users/yina/.pyenv/shims/python /Users/yina/Dropbox/Backups/geektool/ubersicht_widgets/bin/rtm_cli.py -c -p ls list:.events_travel"
+command: "sleep 10 | /Users/yina/.pyenv/shims/python /Users/yina/Dropbox/Backups/geektool/ubersicht_widgets/bin/rtm_cli.py -c -p ls list:.events_travel"
 
 refreshFrequency: false
 
