@@ -107,8 +107,6 @@ except ImportError:
     from urllib import urlopen
     from urllib import quote
 
-
-
 # VARIABLES:
 # IF YOU ARE PLANNING ON MAKING DRASTIC CHANGES OR USING THIS SCRIPT AS THE BASIS FOR ANOTHER PROGRAM,
 # PLEASE OBTAIN A NEW API KEY & SECRET FROM REMEMBER THE MILK
@@ -4448,7 +4446,16 @@ def main(argv, mode=""):
 
     # Process commands (only one can be given at a time)
     if command == "ls":
-        ls(filterString=" ".join(args[1:]))
+        filename = str(args[1:][0]) + ".txt"
+        if os.path.exists(filename):
+            prevread = open(filename, "r").read()
+
+        try:
+            sys.stdout = Logger(filename)
+            ls(filterString=" ".join(args[1:]))
+        except:
+            sys.stdout.write("<tr><td>file</td><td></td></tr>")
+            sys.stdout.write(prevread)
 
     elif command == "lsp":
         lsp(filterString=" ".join(args[1:]))
@@ -4642,10 +4649,24 @@ def main(argv, mode=""):
             sys.exit(2)
 
 
+class Logger(object):
+    def __init__(self, file):
+        self.terminal = sys.stdout
+        self.log = open(file, "w")
+
+    def write(self, message):
+        self.terminal.write(message)
+        self.log.write(message)
+
+    def flush(self):
+        #this flush method is needed for python 3 compatibility.
+        #this handles the flush command by doing nothing.
+        #you might want to specify some extra behavior here.
+        pass
+
 # Call main with all args (excluding the command name)
 if __name__ == "__main__":
     main(sys.argv[1:])
-
 
 # END main()
 # ========================================================================================================= #
